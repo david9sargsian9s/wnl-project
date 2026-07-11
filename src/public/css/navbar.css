@@ -1,0 +1,285 @@
+/* ==========================================================================
+   WNL SYSTEMS // ISOLATED NAVIGATION STYLES
+   ========================================================================== */
+
+.nav-container { 
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    padding: 15px 40px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 100; 
+    border-bottom: 1px solid var(--border-color); 
+    background: rgba(5, 5, 8, 0.6);
+}
+
+.nav-brand { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px;
+}
+
+.nav-logo { 
+    width: 32px; 
+    height: 32px; 
+    filter: drop-shadow(0 0 8px var(--accent-green)); 
+    animation: mini-rotate 4s linear infinite;
+}
+
+.nav-title { 
+    font-family: var(--font-mono); 
+    font-weight: bold; 
+    color: var(--accent-green); 
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a { 
+    color: #fff; 
+    text-decoration: none; 
+    font-size: 0.9rem; 
+    font-family: var(--font-mono); 
+    margin-left: 20px; 
+    transition: 0.3s ease;
+}
+.nav-links a:hover { 
+    color: var(--accent-blue); 
+    text-shadow: 0 0 8px var(--accent-blue);
+}
+
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 98;
+    transition: opacity 0.4s ease, visibility 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+.nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.burger-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 101;
+    padding: 0;
+}
+
+.burger-line {
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-green);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 0 5px var(--accent-green);
+}
+
+.burger-menu-btn.active .burger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.burger-menu-btn.active .burger-line:nth-child(2) {
+    opacity: 0;
+}
+.burger-menu-btn.active .burger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 15px 20px;
+    }
+
+    .burger-menu-btn {
+        display: flex;
+    }
+
+    .nav-menu-wrapper {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background: rgba(10, 10, 15, 0.95);
+        border-left: 1px solid var(--border-color);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        z-index: 99;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-menu-wrapper.active {
+        right: 0;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 30px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        margin-left: 0;
+        font-size: 1.2rem;
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav-title {
+        font-size: 0.85rem;
+    }
+}
+
+.user-menu-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.user-icon-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--accent-green);
+    transition: 0.3s;
+    overflow: hidden;
+}
+.user-icon-btn:hover {
+    box-shadow: 0 0 10px var(--accent-green);
+    background: rgba(0, 255, 102, 0.05);
+}
+
+.user-icon-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-popup {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 260px;
+    background: #0d0d13;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    display: none; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    text-align: left;
+    z-index: 1000;
+}
+
+.user-menu-wrapper.active .user-popup {
+    display: block;
+    animation: navFadeIn 0.3s ease;
+}
+
+.popup-username {
+    font-family: var(--font-mono);
+    font-weight: bold;
+    color: #fff;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+}
+
+.popup-email {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+    word-break: break-all;
+}
+
+.Avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.Avatar .user-icon-btn {
+    width: 46px;
+    height: 46px;
+}
+
+.popup-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 10px 0;
+}
+
+.popup-btn {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+}
+
+.btn-login {
+    background: var(--accent-green);
+    color: #000;
+    font-weight: bold;
+}
+.btn-login:hover { box-shadow: 0 0 10px var(--accent-green); }
+
+.btn-logout {
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.btn-logout:hover { background: rgba(255,255,255,0.1); }
+
+.btn-delete {
+    background: rgba(255, 95, 86, 0.1);
+    color: #ff5f56;
+    border: 1px solid rgba(255, 95, 86, 0.2);
+    margin-top: 8px;
+}
+.btn-delete:hover { background: #ff5f56; color: #fff; }
+
+@keyframes navFadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

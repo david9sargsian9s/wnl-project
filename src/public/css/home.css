@@ -1,0 +1,366 @@
+/* --- Global variables --- */
+:root { 
+--bg-color: #060609; 
+--text-color: #e2e8f0; 
+--accent-green: #00ff66; 
+--accent-blue: #00e5ff; 
+--card-bg: rgba(10, 10, 15, 0.85); 
+--border-color: rgba(0, 255, 102, 0.15); 
+--font-mono: 'Courier New', Courier, monospace; 
+--transition-cubic: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { 
+margin: 0; 
+padding: 0; 
+box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body { 
+background-color: var(--bg-color); 
+color: var(--text-color); 
+font-family: 'Segoe UI', sans-serif; 
+overflow-x: hidden;
+}
+
+/* Background grid */
+.matrix-grid { 
+position: fixed; 
+top: 0; left: 0; width: 100%; height: 100%; 
+background-image: 
+linear-gradient(var(--border-color) 1px, transparent 1px), 
+linear-gradient(90deg, var(--border-color) 1px, transparent 1px); 
+background-size: 40px 40px; 
+opacity: 0.12; 
+z-index: -1;
+}
+
+/* --- SECTION 1: Welcome (3D Logo and Quote) --- */
+.welcome-section { 
+height: 100vh; 
+display: flex; 
+flex-direction: column; 
+justify-content: center; 
+align-items: center; 
+perspective: 1000px;
+}
+
+.logo-wrapper { 
+width: 220px; 
+height: 220px; 
+margin-bottom: 3rem; 
+transform-style: preserve-3d; 
+animation: rotate3DLogo 12s linear infinite;
+}
+
+.main-logo-img { 
+width: 100%; 
+height: 100%; 
+object-fit: contain; 
+filter: drop-shadow(0 0 25px rgba(0, 255, 102, 0.867));
+}
+
+@keyframes rotate3DLogo { 
+0% { transform: rotateY(0deg) rotateX(0deg); } 
+50% { transform: rotateY(180deg) rotateX(15deg); } 
+100% { transform: rotateY(360deg) rotateX(0deg); }
+}
+
+.quote-container { 
+font-family: var(--font-mono); 
+color: var(--accent-blue); 
+font-size: 1.1rem; 
+text-align: center; 
+max-width: 650px; 
+border-left: 3px solid var(--accent-green); 
+padding: 5px 20px; 
+background: rgba(0,0,0,0.3);
+}
+
+/* --- SECTION 2: Interactive Terminals --- */
+.terminals-section { 
+min-height: 100vh; 
+padding: 120px 40px; 
+display: flex; 
+flex-direction: column; 
+align-items: center;
+}
+
+.terminals-container { 
+display: flex; 
+gap: 40px; 
+max-width: 1300px; 
+width: 100%; 
+margin-top: 60px;
+}
+
+.terminal-card { 
+flex: 1; 
+background: var(--card-bg); 
+border: 1px solid var(--border-color); 
+border-radius: 8px; 
+padding: 20px; 
+box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+
+/* Initial state of the cards (shifted down and hidden) */
+.terminals-container .terminal-card {
+opacity: 0;
+transform: translateY(100px);
+transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+}
+
+/* When the parent section .reveal-item gets the .show class when scrolling */
+.terminals-section.show .terminal-card {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Delay for the right terminal (Wlite) - it will go second */
+.terminals-container .terminal-card:last-child {
+transition-delay: 0.3s; /* 0.3 second delay */
+}
+
+.terminal-header { 
+display: flex; 
+justify-content: space-between; 
+align-items: center; 
+margin-bottom: 15px; 
+border-bottom: 1px solid rgba(255,255,255,0.05); 
+padding-bottom: 10px;
+}
+.dots { display: flex; gap: 8px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+.terminal-title { font-family: var(--font-mono); font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+
+/* CLI screen emulation */
+.cli-screen { 
+width: 100%; 
+height: 260px; 
+background: #020204; 
+border-radius: 4px; 
+padding: 15px; 
+font-family: var(--font-mono); 
+font-size: 0.85rem; 
+overflow-y: hidden; 
+margin-bottom: 25px; 
+border: 1px solid rgba(255,255,255,0.03);
+}
+
+.cli-line { margin-bottom: 6px; line-height: 1.4; }
+.cli-green { color: var(--accent-green); }
+.cli-blue { color: var(--accent-blue); }
+.cli-dim { color: #5a6578; }
+
+/* --- SECTION 3: About & Geometry --- */
+.about-section { 
+min-height: 100vh; 
+display: flex; 
+align-items: center; 
+justify-content: space-between; 
+padding: 120px max(5%, 60px); 
+position: relative;
+}
+
+/* Initial state of content and geometry in the About section (hidden and shifted to the bottom) */
+.about-section .about-content,
+.about-section .geo-shapes {
+opacity: 0;
+transform: translateY(80px);
+transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
+}
+
+/* Alternating appearance: text first, then geometry */
+.about-section.show .about-content {
+opacity: 1;
+transform: translateY(0);
+}
+
+.about-section.show .geo-shapes {
+opacity: 1;
+transform: translateY(0);
+transition-delay: 0.3s; /* A short delay for a nice effect */
+}
+
+.about-content { max-width: 650px; }
+
+.geo-shapes { 
+position: relative; 
+width: 450px; 
+height: 450px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+/* Cool geometry inspired by your logo */
+.geo-hex {
+width: 250px;
+height: 250px;
+border: 2px dashed var(--accent-green);
+clip-path: polygon(50% 0%, 100% 25%, 100% 75%,50% 100%, 0% 75%, 0% 25%); 
+animation: rotateHex 20s linear infinite; 
+position: absolute;
+}
+
+.geo-pulse-circle { 
+width: 100px; 
+height: 100px; 
+border: 2px solid var(--accent-blue); 
+border-radius: 50%; 
+position: absolute; 
+animation: pulseCircle 3s ease-in-out infinite alternate;
+}
+
+@keyframes rotateHex { 
+0% { transform: rotate(0deg) scale(1); } 
+50% { transform: rotate(180deg) scale(1.1); border-color: var(--accent-blue); } 
+100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes pulseCircle { 
+0% { transform: scale(0.8); opacity: 0.4; box-shadow: 0 0 0px var(--accent-blue); } 
+100% { transform: scale(1.3); opacity: 0.9; box-shadow: 0 0 20px var(--accent-blue); }
+}
+
+/* --- SCROLLING ANIMATION --- */
+.reveal-item { 
+opacity: 0; 
+transform: translateY(70px); 
+transition: var(--transition-cubic);
+}
+
+.reveal-item.show { 
+opacity: 1; 
+transform: translateY(0);
+}
+
+/* --- RESPONSIVE STYLES --- */
+
+/* Tablets (up to 992px) */
+@media (max-width: 992px) {
+.terminals-container {
+flex-direction: column; /* Arrange terminals one after another */
+gap: 30px;
+padding: 0 10px;
+}
+
+/* On tablets, make the right terminal appear a little faster since it's now at the bottom */
+.terminals-container .terminal-card:last-child {
+transition-delay: 0.15s;
+}
+
+.about-section {
+flex-direction: column; /* Text and geometry are arranged in a column */
+justify-content: center;
+text-align: center;
+gap: 50px;
+}
+
+.geo-shapes {
+width: 300px;
+height: 300px;
+}
+}
+
+.logo-wrapper {
+width: 150px; /* Reduce the size of the main logo so it doesn't take up the entire screen */
+height: 150px;
+margin-bottom: 2rem;
+}
+
+.quote-container {
+font-size: 0.95rem; /* Reduce the font size of the blockquote */
+max-width: 90%;
+}
+
+.terminals-section h2,
+.about-section h2 {
+font-size: 1.8rem !important; /* Adjust section headings */
+}
+
+.cli-screen {
+height: 300px; /* Give a little more space for code on narrow screens */
+font-size: 0.75rem; /* Narrow the font size in the console to prevent ugly line breaks */
+}
+
+
+/* --- AUTH SCREENS --- */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+    text-align: center;
+}
+
+.auth-title {
+    font-family: var(--font-mono);
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.auth-subtitle {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+/* OAuth buttons */
+.oauth-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.03);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    margin-bottom: 15px;
+    text-decoration: none;
+}
+
+.oauth-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.oauth-btn.google:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+}
+
+.oauth-btn.github:hover {
+    background: #24292e;
+    border-color: #586069;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+}

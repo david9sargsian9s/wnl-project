@@ -10,7 +10,7 @@ export interface IProduct extends Document {
   updatedAt: Date;
 }
 
-const ProductSchema = new Schema<IProduct>(
+const EventSchema = new Schema<IProduct>(
   {
     name: {
       type: String,
@@ -43,4 +43,4 @@ const ProductSchema = new Schema<IProduct>(
   }
 );
 
-export const productModel = model<IProduct>('products', ProductSchema);
+export const EventModel = model<IProduct>('events', EventSchema);

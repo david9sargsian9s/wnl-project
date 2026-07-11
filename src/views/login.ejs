@@ -1,7 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include('partials/head') %>
-    <body>
-        login
+    <body style="background-color: #040406;">
+        <h2>Log In</h2>
+
+<form id="login-form">
+  <input type="email" id="login-email" placeholder="Email" required><br><br>
+  <input type="password" id="login-password" placeholder="Password" required><br><br>
+  <button type="submit">Login via Email</button>
+</form>
+
+<hr>
+
+<h3>Or log in via social networks:</h3>
+<a href="/auth/google"><button style="cursor:pointer; padding: 10px;">Войти через Google</button></a>
+<a href="/auth/github"><button style="cursor:pointer; padding: 10px;">Войти через GitHub</button></a>
+
+<br><br>
+<a href="/auth/register">Don't have an account? Sign up</a>
+
+    <script>
+      document.getElementById('login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        const res = await fetch('/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        if (res.ok) {
+          window.location.href = '/'; 
+        } else {
+          const data = await res.json();
+          alert(data.error || 'incorrect login or password.');
+        }
+      });
+    </script>
     </body>
 </html>

@@ -19,13 +19,14 @@ class UserController {
 
     async updateUser(req : Request, res : Response) {
         try {
-            if (!req.user) {
-                return res.status(401).json({ error: "the user is not authorized." });
+            const Uid = req.jwtUser?.id;
+            
+            if (!Uid) {
+                return res.status(401).json({ msg: "Unauthorized: Invalid token payload" });
             }
 
             const targetId : Id = req.params.id;
-            const Uid = req.user.id;
-            
+
             const UpdatedInfo = await req.app.locals.services.users.updateUser(targetId, req.body);
             res.status(200).set({
                 'content-type' : 'application/json',
@@ -41,12 +42,13 @@ class UserController {
 
     async deleteUser(req : Request, res : Response) {
         try {
-            if (!req.user) {
-                return res.status(401).json({ error : "the user is not authorized or is not defined." });
+            const Uid = req.jwtUser?.id;
+
+            if (!Uid) {
+                return res.status(401).json({ msg: "Unauthorized: Invalid token payload" });
             }
 
             const targetId : Id = req.params.id;
-            const Uid = req.user.id;
 
             const deleted = await req.app.locals.services.users.deleteUser(targetId);
 

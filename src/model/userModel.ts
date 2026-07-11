@@ -7,9 +7,11 @@ export interface IUser {
   nameLength?: number;
   age: number;
   email: string;
-  password: string;
+  password?: string; // Made optional because OAuth users don't have passwords
   role: 'user' | 'admin' | 'moderator';
   status: 'active' | 'banned' | 'pending';
+  isOAuth?: boolean;   // Added for OAuth support
+  provider?: string;   // Added to know if it's 'google' or 'github'
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -65,9 +67,14 @@ const userSchema = new Schema<IUserDocument>(
 
     password: {
       type: String,
-      required: [true, 'Password is required'],
+      required: [
+        function (this: any) { return !this.isOAuth; }, // Required ONLY if it's NOT OAuth
+        'Password is required'
+      ],
       validate: {
-        validator: function (v: string) {
+        validator: function (this: any, v: string) {
+          // If logged via OAuth, completely bypass password strength check
+          if (this.isOAuth) return true; 
           return passwordRegex.test(v);
         },
         message:
@@ -88,6 +95,17 @@ const userSchema = new Schema<IUserDocument>(
       type: String,
       enum: ['active', 'banned', 'pending'],
       default: 'active'
+    },
+
+    // Added to Mongoose schema so it saves to the DB
+    isOAuth: {
+      type: Boolean,
+      default: false
+    },
+
+    provider: {
+      type: String,
+      default: 'local'
     }
   },
   {
@@ -107,15 +125,17 @@ userSchema.pre('save', async function (this: IUserDocument): Promise<void> {
   if (this.isModified('name')) {
     this.nameLength = this.name.length;
   }
-
   return;
 });
 
 // 5. Password hashing
-userSchema.pre('save', async function (
-  this: IUserDocument
-): Promise<void> {
-  if (!this.isModified('password')) {
+userSchema.pre('save', async function (this: IUserDocument): Promise<void> {
+  // Now TS knows what isOAuth is! No more errors here.
+  if (this.isOAuth) {
+    return;
+  }
+
+  if (!this.isModified('password') || !this.password) {
     return;
   }
 

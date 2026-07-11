@@ -1,5 +1,5 @@
 import { UserModel } from "../model/userModel";
-import { productModel } from "../model/productModel";
+import { productModel } from "../model/EventModel";
 import { tokenModel } from "../model/tokenModel";
 
 export interface IModels {

@@ -1,7 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
-    <%- include('partials/head') %>
-    <body>
-        home
-    </body> 
+<html lang="en"> 
+<%- include('partials/head') %> 
+<body> 
+<div class="matrix-grid"></div> 
+
+<%- include('partials/nav') %> 
+
+<section class="welcome-section"> 
+<div class="logo-wrapper"> 
+<img src="/images/WNLproject-logo.png" class="main-logo-img" alt="WNL Main Logo"> 
+</div> 
+<div class="quote-container"> 
+<p>"Two systems. One interface. Unlimited possibilities."</p> 
+</div> 
+</section> 
+
+<section id="cores" class="terminals-section reveal-item"> 
+<h2 style="font-family: var(--font-mono); font-size: 2rem; margin-bottom: 10px; color: #fff;">SYSTEM_CORES</h2> 
+<p style="color: rgba(255,255,255,0.5); font-family: var(--font-mono);">[ Select core architecture ]</p> 
+
+<div class="terminals-container"> 
+<div class="terminal-card"> 
+<div class="terminal-header"> 
+<div class="dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div> 
+<div class="terminal-title">webit@wnl-core:~</div> 
+</div> 
+<div class="cli-screen"> 
+<div class="cli-line class-dim">// Native WNL Web OS client</div> 
+<div class="cli-line"><span class="cli-green">wnl-os$</span> init daemon --mode=user</div> 
+<div class="cli-line cli-dim">[OK] User processes spawned successfully.</div> 
+<div class="cli-line"><span class="cli-green">wnl-os$</span> netcat --listen -p 8080 --lib-env</div> 
+<div class="cli-line cli-blue">[NETCAT] Dev environment listening via local terminal...</div> 
+<div class="cli-line"><span class="cli-green">wnl-os$</span> vfs mount --target=cloud_vfs</div> 
+<div class="cli-line">[VFS] Ready. Target routing: Cloud / Local Storage.</div>
+<div class="cli-line"><span class="cli-green">wnl-os$</span> <span class="blink">_</span></div>
+</div>
+<h3 style="color: var(--accent-green); font-family: var(--font-mono); margin-bottom: 12px;">Webit Terminal</h3>
+<p style="font-size: 0.95rem; color: #a0aec0; line-height: 1.5;">
+Native client and full-fledged Web OS. All computing is performed through isolated user processes and background daemons. Includes a powerful developer environment for deploying technical libraries directly via <b>netcat</b> on your PC. Equipped with a virtual file system (VFS) with a choice of local or cloud storage, as well as provisions for remote device control via <b>TCP connections</b>. 
+</p> 
+</div> 
+
+<div class="terminal-card"> 
+<div class="terminal-header"> 
+<div class="dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div> 
+<div class="terminal-title">wlite@ssr-forge-ts:~</div> 
+</div> 
+<div class="cli-screen"> 
+<div class="cli-line cli-dim">// Web operating environment</div> 
+<div class="cli-line"><span class="cli-blue">wlite-cms$</span> ssr-forge build --ts-target</div> 
+<div class="cli-line">[FORGE] Architecture compiled. Client-ready.</div> 
+<div class="cli-line"><span class="cli-blue">wlite-cms$</span> auth --user=admin --role=root</div> 
+<div class="cli-line cli-green">[AUTH] Welcome back, Administrator (Role: Root)</div> 
+<div class="cli-line"><span class="cli-blue">wlite-cms$</span> storage sync --provider=google-cloud</div> 
+<div class="cli-line">[VFS] Mounted to Google Cloud Console / Drive.</div> 
+<div class="cli-line"><span class="cli-blue">wlite-cms$</span> <span class="blink">_</span></div> 
+</div> 
+<h3 style="color: var(--accent-blue); font-family: var(--font-mono); margin-bottom: 12px;">Wlite Core</h3>
+<p style="font-size: 0.95rem; color: #a0aec0; line-height: 1.5;">
+A lightweight web operating environment built on the reactive <b>ssr-forge-TS</b> architecture. Designed for seamless integration into web platforms as an advanced console CMS/CRM system. Allows you to administer content, applications, and websites using a convenient UNIX-like syntax. Out of the box, it supports role-based authentication and a smart VFS linked to Google Cloud Console and Google Drive. Ideal for safely training newcomers to the CLI.
+</p> 
+</div> 
+</div> 
+</section> 
+
+<section id="about" class="about-section reveal-item"> 
+<div class="about-content"> 
+<h2 style="font-size: 2.5rem; margin-bottom: 25px; font-family: var(--font-mono); letter-spacing: 2px;">ABOUT_WNL</h2> 
+<p style="color: #a0aec0; margin-bottom: 18px;font-size: 1.05rem; line-height: 1.6;">
+<b>WNL</b> is a high-tech experimental ecosystem that completely reimagines user interaction with web interfaces, blurring the boundaries between the classic terminal and a full-fledged web OS structure.
+</p>
+<p style="color: #a0aec0; font-size: 1.05rem; line-height: 1.6;">
+Both systems use a single UNIX-like command logic, guaranteeing easy, free, and, most importantly, completely secure control over your data, websites, and distributed nodes in the cloud or on a physical disk.
+</p>
+</div>
+
+<div class="geo-shapes">
+<div class="geo-hex"></div>
+<div class="geo-pulse-circle"></div>
+</div>
+</section>
+
+<%- include('partials/footer') %>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('show');
+}
+});
+}, { threshold: 0.12 }); 
+
+document.querySelectorAll('.reveal-item').forEach(section => { 
+observer.observe(section); 
+}); 
+
+</script> 
+<script src="/js/home.js"></script>
+</body>
 </html>

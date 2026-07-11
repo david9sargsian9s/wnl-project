@@ -1,0 +1,86 @@
+<div class="nav-overlay" id="navOverlay" onclick="toggleMobileMenu()"></div>
+
+<nav class="nav-container">
+    <a href="#top" style="text-decoration: none; display: flex; align-items: center;">
+        <div class="nav-brand">
+            <img src="/images/WNLproject.ico" class="nav-logo" alt="WNL Logo">
+            <span class="nav-title">WNL // SYSTEMS</span>
+        </div>
+    </a>
+    
+    <div class="nav-menu-wrapper" id="navMenuWrapper">
+        <div class="nav-links">
+            <a href="/products" onclick="closeMobileMenu()">products</a>
+            <a href="/roadmap" onclick="closeMobileMenu()">roadmap</a>
+            <a href="#cores" onclick="closeMobileMenu()">System Cores</a>
+            <a href="#about" onclick="closeMobileMenu()">About</a>
+        </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 20px;">
+        <div class="user-menu-wrapper" id="userMenu">
+            <button class="user-icon-btn" onclick="toggleUserMenu()">
+                <% if (locals.user && user.photos && user.photos[0]) { %>
+                    <img src="<%= user.photos[0].value %>" alt="Avatar">
+                <% } else if (locals.user && user.avatarUrl) { %>
+                    <img src="<%= user.avatarUrl %>" alt="Avatar">
+                <% } else { %>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <% } %>
+            </button>
+
+            <div class="user-popup">
+                <div class="Avatar">
+                    <div class="user-icon-btn">
+                        <% if (locals.user && user.photos && user.photos[0]) { %>
+                            <img src="<%= user.photos[0].value %>" alt="Avatar">
+                        <% } else if (locals.user && user.avatarUrl) { %>
+                            <img src="<%= user.avatarUrl %>" alt="Avatar">
+                        <% } else { %>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <% } %>
+                    </div>
+                </div>
+                <% if (locals.user) { %>
+                    <div class="popup-username"><%= user.name || 'WNL_User' %></div>
+                    <div class="popup-email"><%= user.email || 'OAuth Protected Account' %></div>
+                    <div class="popup-divider"></div>
+                    <a href="/auth/clear" class="popup-btn btn-logout">Log Out</a>
+                    <button type="button" class="popup-btn btn-delete" id="navDeleteBtn" data-id="<%= user.id %>">Delete Account</button>
+                <% } else { %>
+                    <div class="popup-username" style="margin-bottom: 12px; text-align: center;">Access Denied</div>
+                    <a href="/auth/login" class="popup-btn btn-login">Sign In / Sign Up</a>
+                <% } %>
+            </div>
+        </div>
+
+        <button class="burger-menu-btn" id="burgerBtn" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+        </button>
+    </div>
+</nav>
+
+
+<% if (locals.user) { %>
+<script>
+    document.getElementById('navDeleteBtn').addEventListener('click', async (e) => {
+        if (!confirm('Are you sure you want to completely delete your WNL account?')) return;
+        const userId = e.target.getAttribute('data-id');
+        try {
+            const res = await fetch(`/api/users/${userId}`, { method: 'DELETE' });
+            if (res.ok) {
+                window.location.href = '/auth/clear';
+            } else {
+                const data = await res.json();
+                alert(data.error || 'Error');
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    });
+</script>
+<% } %>
+
+<script src="/js/navMoments.js"></script>

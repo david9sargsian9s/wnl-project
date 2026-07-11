@@ -6,19 +6,21 @@ type ResourceType = 'user' | 'product';
 
 export function checkPermission(action: ActionType, resource: ResourceType, isOwn: boolean = false) {
     return (req: Request, res: Response, next: NextFunction) => {
-        if (!req.user) {
-            if (req.xhr || req.headers.accept?.includes('application/json')) {
+        const currentUser = req.user || (req as any).jwtUser;
+
+        if (!currentUser) {
+            if (req.method === 'DELETE' || req.xhr || req.headers.accept?.includes('application/json')) {
                 return res.status(401).json({ error: "Unauthorized: Please log in." });
             }
             return res.redirect('/auth/login');
         }
 
-        const role = req.user.role;
+        const role = currentUser.role || 'user';
         let permission;
 
         if (isOwn) {
             const targetId = req.params.id;
-            const isOwner = req.user.id === targetId;
+            const isOwner = currentUser.id === targetId;
 
             if (isOwner) {
                 permission = ac.can(role)[`${action}Own`](resource);

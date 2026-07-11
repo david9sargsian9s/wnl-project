@@ -1,5 +1,6 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
+import { IJwtPayload } from '../types/express';
 
 interface JwtData extends JwtPayload {
     id : string;
@@ -12,7 +13,7 @@ function getAccessFromCheck(req : Request, res : Response, next : NextFunction) 
     
     // if we are rendering something.  ^
 
-    const token = req.cookies.token;
+    const token = req.cookies.accessToken || req.cookies.token;
 
     const secret =  process.env.JWT_ACCESS_SECRET;
     if (!secret) {
@@ -22,7 +23,7 @@ function getAccessFromCheck(req : Request, res : Response, next : NextFunction) 
     try {
         const decoded = jwt.verify(token, secret) as { id: string; role: 'user' | 'admin' | 'moderator' };
 
-        req.user = decoded;
+        req.jwtUser = decoded as IJwtPayload;
 
         return next();
     } catch (error : unknown) {

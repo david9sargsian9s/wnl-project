@@ -1,4 +1,4 @@
-import { IProduct } from "../model/productModel";
+import { IProduct } from "../model/EventModel";
 import { IModels } from "../types/models";
 
 class ProductService {

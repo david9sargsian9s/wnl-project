@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import { productModel } from "../model/productModel";
+import { EventModel } from "../model/EventModel";
 
 async function loadProduct(req : Request, res : Response, next : NextFunction) {
     try {
-        const product = await productModel.findById(req.params.id);
+        const product = await EventModel.findById(req.params.id);
 
         if (!product) {
             return res.status(404).json({

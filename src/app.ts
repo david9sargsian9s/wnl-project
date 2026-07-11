@@ -6,16 +6,20 @@ import logger from 'morgan';
 import mongoose from 'mongoose';
 import 'dotenv/config';
 
+import passport from 'passport';
+// Load the strategy settings file (the one we wrote in the previous step)
+import './config/passport';
+
 import usersRouter from './routes/users';
 import authRouter from './routes/auth';
-import productRouter from './routes/product';
+import productRouter from './routes/events';
 
 import { UserModel } from './model/userModel';
 import { tokenModel } from './model/tokenModel';
-import { productModel } from './model/productModel';
+import { EventModel } from './model/EventModel';
 
 import UserService from './service/User.service';
-import ProductService from './service/Product.service';
+import EventService from './service/Event.service';
 import AuthService from './service/Auth.service';
 
 import { IModels } from "./types/models";
@@ -36,7 +40,7 @@ interface IAppLocals {
 
   services: {
     users: UserService;
-    products: ProductService;
+    products: EventService;
     auth: AuthService;
   };
 }
@@ -47,13 +51,13 @@ declare module "express-serve-static-core" {
 
 app.locals.model = {
   users : UserModel,
-  products : productModel,
+  products : EventModel,
   token : tokenModel,
 }
 
 app.locals.services = {
   users : new UserService(app.locals.model),
-  products : new ProductService(app.locals.model),
+  products : new EventService(app.locals.model),
   auth : new AuthService(app.locals.model),
 }
 
@@ -69,6 +73,9 @@ app.use(cookieParser());
 app.use('/', usersRouter);
 app.use('/auth', authRouter);
 app.use('/', productRouter);
+
+
+app.use(passport.initialize());
 
 // catch 404 and forward to error handler
 app.use(function(req : Request, res : Response, next : NextFunction) {

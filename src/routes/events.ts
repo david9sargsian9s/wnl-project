@@ -1,5 +1,5 @@
 import express from 'express';
-import ProductController from '../controller/ProductController';
+import ProductController from '../controller/EventController';
 import loadProduct from '../middlewares/loadProduct';
 import { checkPermission } from '../middlewares/ckeckPermission';
 
