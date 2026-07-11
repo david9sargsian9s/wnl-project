@@ -1,0 +1,416 @@
+/* ==========================================================================
+   WNL SYSTEMS // DIRECT AUTH STYLES
+   ========================================================================== */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+body > h2 {
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+body > h2::before {
+    content: "CORE_AUTH // ";
+    color: var(--accent-green, #00ff66);
+}
+
+#login-form {
+    background: rgba(8, 8, 12, 0.85);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+    padding: 35px 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7),
+                inset 0 0 15px rgba(0, 255, 102, 0.02);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: border-color 0.3s ease;
+}
+
+#login-form:focus-within {
+    border-color: var(--accent-blue, #00e5ff);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 229, 255, 0.05);
+}
+
+#login-form input {
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+}
+
+#login-form input:focus {
+    border-color: var(--accent-blue, #00e5ff);
+    background: rgba(0, 229, 255, 0.02);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.15);
+}
+
+#login-form input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+#login-form button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    border: 1px solid var(--accent-green, #00ff66);
+    color: var(--accent-green, #00ff66);
+    font-family: inherit;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#login-form button[type="submit"]:hover {
+    background: rgba(0, 255, 102, 0.08);
+    box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+    text-shadow: 0 0 5px var(--accent-green, #00ff66);
+}
+
+hr {
+    width: 100%;
+    max-width: 380px;
+    border: none;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 30px 0;
+}
+
+body > h3 {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    font-weight: normal;
+}
+
+a[href="/auth/google"], 
+a[href="/auth/github"] {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    max-width: 380px;
+    margin-bottom: 12px;
+}
+
+a[href^="/auth/"] button {
+    width: 100%;
+    padding: 12px !important;
+    font-family: inherit;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease !important;
+}
+
+a[href="/auth/google"] button {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+a[href="/auth/google"] button:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+a[href="/auth/github"] button {
+    background: rgba(0, 229, 255, 0.02) !important;
+    border: 1px solid rgba(0, 229, 255, 0.2) !important;
+    color: var(--accent-blue, #00e5ff) !important;
+}
+
+a[href="/auth/github"] button:hover {
+    background: rgba(0, 229, 255, 0.1) !important;
+    border-color: var(--accent-blue, #00e5ff) !important;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+    text-shadow: 0 0 5px var(--accent-blue, #00e5ff);
+}
+
+a[href="/auth/register"] {
+    color: var(--accent-blue, #00e5ff);
+    font-size: 0.85rem;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: 0.2s;
+    margin-top: 10px;
+}
+
+a[href="/auth/register"]:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 5px var(--accent-blue, #00e5ff);
+}
+
+a[href="/auth/google"], 
+a[href="/auth/github"] {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    max-width: 380px;
+    margin-bottom: 12px;
+}
+
+a[href^="/auth/"] button {
+    width: 100%;
+    padding: 12px 16px 12px 44px !important;
+    font-family: inherit;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease !important;
+}
+
+a[href="/auth/google"] button::before,
+a[href="/auth/github"] button::before {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: filter 0.3s ease;
+}
+
+a[href="/auth/google"] button {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+a[href="/auth/google"] button::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23EA4335' d='M5.266 9.765A7.077 7.077 0 0 1 12 4.909c1.69 0 3.218.6 4.418 1.582l3.51-3.51C17.642 1.054 14.993 0 12 0 7.354 0 3.392 2.65 1.48 6.52l3.786 3.245z'/%3E%3Cpath fill='%23FBBC05' d='M1.48 6.52A11.91 11.91 0 0 0 0 12c0 1.954.47 3.8 1.304 5.443l3.966-3.072a7.126 7.126 0 0 1-.523-2.371c0-.85.153-1.666.438-2.425L1.48 6.52z'/%3E%3Cpath fill='%234285F4' d='M12 19.091c-2.915 0-5.433-1.633-6.734-4.043l-3.966 3.072C3.218 21.733 7.29 24 12 24c4.542 0 8.442-1.545 11.233-4.195l-3.714-2.882c-1.488.995-3.376 1.582-5.519 1.582z'/%3E%3Cpath fill='%2334A853' d='M23.491 9.545H12v4.8h6.545c-.283 1.536-1.154 2.836-2.463 3.714l3.714 2.882C21.968 18.845 24 14.477 24 9.545c0-.62-.054-1.222-.153-1.8H12z'/%3E%3C/svg%3E");
+}
+
+a[href="/auth/google"] button:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+a[href="/auth/google"] button:hover::before {
+    filter: brightness(0.8);
+}
+
+a[href="/auth/github"] button {
+    background: rgba(0, 229, 255, 0.02) !important;
+    border: 1px solid rgba(0, 229, 255, 0.2) !important;
+    color: var(--accent-blue, #00e5ff) !important;
+}
+
+a[href="/auth/github"] button::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2300e5ff' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
+}
+
+a[href="/auth/github"] button:hover {
+    background: rgba(0, 229, 255, 0.1) !important;
+    border-color: var(--accent-blue, #00e5ff) !important;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+    text-shadow: 0 0 5px var(--accent-blue, #00e5ff);
+}
+
+a[href="/auth/github"] button:hover::before {
+    filter: drop-shadow(0 0 4px var(--accent-blue, #00e5ff));
+}
+
+@media (max-width: 400px) {
+    a[href^="/auth/"] button {
+        padding: 11px 12px 11px 38px !important;
+        font-size: 0.8rem;
+    }
+    a[href^="/auth/"] button::before {
+        left: 12px;
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* ==========================================================================
+   MOBILE ADAPTIVITY & RESPONSIVNESS
+   ========================================================================== */
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+        justify-content: flex-start;
+        padding-top: 40px;
+    }
+
+    body > h2 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    #login-form {
+        padding: 25px 20px;
+        max-width: 100%;
+    }
+
+    #login-form input {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    #login-form button[type="submit"] {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+
+    hr {
+        margin: 20px 0;
+        max-width: 100%;
+    }
+
+    a[href="/auth/google"], 
+    a[href="/auth/github"] {
+        max-width: 100%;
+    }
+
+    a[href^="/auth/"] button {
+        padding: 11px !important;
+        font-size: 0.8rem;
+    }
+    
+    a[href="/auth/register"] {
+        font-size: 0.8rem;
+        text-align: center;
+        display: block;
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    body {
+        padding: 10px;
+    }
+
+    #login-form {
+        padding: 20px 15px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    #login-form input {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    a[href="/auth/google"], 
+    a[href="/auth/github"],
+    a[href^="/auth/"] button {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+}
+
+/* ==========================================================================
+   TARGET DEVICE ADAPTIVITY (PIXEL 7, GALAXY A51 / A71, ETC.)
+   ========================================================================== */
+
+@media screen and (min-width: 360px) and (max-width: 420px) {
+    body {
+        padding: 20px 16px;
+        justify-content: center;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+    }
+
+    #login-form {
+        padding: 30px 24px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    #login-form input {
+        padding: 14px 16px;
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+    }
+
+    #login-form button[type="submit"] {
+        padding: 14px;
+        font-size: 0.9rem;
+    }
+
+    hr {
+        margin: 24px 0;
+    }
+
+    a[href="/auth/google"] button,
+    a[href="/auth/github"] button {
+        padding: 14px 16px 14px 46px !important;
+        font-size: 0.85rem;
+    }
+
+    a[href="/auth/google"] button::before,
+    a[href="/auth/github"] button::before {
+        left: 18px;
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (max-height: 660px) and (max-width: 450px) {
+    body {
+        justify-content: flex-start;
+        padding-top: 20px;
+    }
+    
+    body > h2 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+    
+    hr {
+        margin: 15px 0;
+    }
+}
