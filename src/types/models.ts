@@ -1,9 +1,9 @@
 import { UserModel } from "../model/userModel";
-import { productModel } from "../model/EventModel";
+import { EventModel } from "../model/EventModel";
 import { tokenModel } from "../model/tokenModel";
 
 export interface IModels {
     users: typeof UserModel;
-    products: typeof productModel;
+    products: typeof EventModel;
     token: typeof tokenModel;
 }
