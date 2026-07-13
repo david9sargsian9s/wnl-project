@@ -61,11 +61,14 @@ class RenderController {
     async getProductsPage(req : Request, res : Response) {
         try {
 
+            const user = req.jwtUser || req.user || null;
+
             res.render('products', {
                     title : 'WNL - products',
                     pageStyles: [
                         '/css/products.css'
                     ],
+                    user : user
                 }
             );
         } catch (error : unknown) {
@@ -79,11 +82,54 @@ class RenderController {
     async getRoadmapPage(req : Request, res : Response) {
         try {
 
+            const user = req.jwtUser || req.user || null;
+
             res.render('roadmap', {
                     title : 'WNL - roadmap',
                     pageStyles: [
                         '/css/roadmap.css'
                     ],
+                    user : user
+                }
+            );
+        } catch (error : unknown) {
+            if (error instanceof Error) {
+                return res.status(400).json({ error: error.message });
+            }
+            res.status(400).json({ error : error })
+        }
+    }
+
+    async getLicensePage(req : Request, res : Response) {
+        try {
+            const user = req.jwtUser || req.user || null;
+
+            res.render('license', {
+                    title : 'WNL - License Agreement',
+                    pageStyles: [
+                        '/css/license.css'
+                    ],
+                    user : user
+                }
+            );
+        } catch (error : unknown) {
+            if (error instanceof Error) {
+                return res.status(400).json({ error: error.message });
+            }
+            res.status(400).json({ error : error })
+        }
+    }
+
+    async getPrivacyPage(req : Request, res : Response) {
+        try {
+            const user = req.jwtUser || req.user || null;
+        
+            res.render('privacy', {
+                    title : 'WNL - Privacy Policy',
+                    pageStyles: [
+                        '/css/privacy.css'
+                    ],
+                    user : user
                 }
             );
         } catch (error : unknown) {

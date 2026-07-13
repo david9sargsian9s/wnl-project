@@ -1,7 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
-    <%- include('partials/head') %>
-    <body>
-        roadmap
-    </body>
+<html lang="en"> 
+<%- include('partials/head') %> 
+<body> 
+    <div class="matrix-grid"></div> 
+
+    <%- include('partials/nav') %> 
+
+    <section class="welcome-section"> 
+        <div class="quote-container"> 
+            <h1 class="typing-text">PROJECT_ROADMAP // UPDATE</h1>
+            <p class="sub-quote">"Tracking development vectors and ecosystem milestones."</p> 
+        </div> 
+    </section> 
+
+    <section class="roadmap-section reveal-item">
+        <div class="timeline-container">
+            <div class="timeline-item completed">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">PHASE 01 // DEPLOYED</div>
+                <h3 class="timeline-title">Core Architecture</h3>
+                <p class="timeline-desc">Initial building of Webit Web OS engine and reactive ssr-forge-TS architecture for WLite client environments.</p>
+            </div>
+            <div class="timeline-item completed">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">PHASE 02 // DEPLOYED</div>
+                <h3 class="timeline-title">Secure Pipelines</h3>
+                <p class="timeline-desc">Integration of Virtual File System (VFS) layers, Google Cloud bindings, and native single-user socket routing.</p>
+            </div>
+            <div class="timeline-item active">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">PHASE 03 // IN DEVELOPMENT</div>
+                <h3 class="timeline-title">Ecosystem Integration</h3>
+                <p class="timeline-desc">Optimizing full remote device control via secure TCP streams and stabilization of netcat deployment daemons.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">PHASE 04 // PLANNED</div>
+                <h3 class="timeline-title">Distributed Nodes</h3>
+                <p class="timeline-desc">Spawning isolated multi-sandbox runtimes and visual cluster mapping dashboards directly on web terminal screens.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section reveal-item">
+        <h2 class="section-title">FREQUENT_QUESTIONS</h2>
+        <div class="faq-container">
+            <div class="faq-card">
+                <div class="faq-question">What is the difference between Webit and WLite?</div>
+                <div class="faq-answer">Webit serves as a standalone Web OS environment utilizing netcat pipelines, while WLite is tailored to mirror those native client commands inside web layouts and custom interfaces.</div>
+            </div>
+            <div class="faq-card">
+                <div class="faq-question">Is my file data secure on the virtual storage?</div>
+                <div class="faq-answer">Yes, all data streams are processed directly through isolated sandboxes using encrypted local configurations or your personal Google Drive authorization bridges.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feedback-section reveal-item">
+        <h2 class="section-title">DEVELOPER_CONTACT</h2>
+        <div class="feedback-container">
+            <% if (locals.user) { %>
+                <form action="/api/support/ask" method="POST" class="qa-form">
+                    <p class="form-status-text">Authenticated as: <span class="user-badge"><%= user.username || user.email %></span></p>
+                    <div class="input-wrapper">
+                        <textarea name="question" placeholder="Type your architectural question or terminal report here..." required></textarea>
+                    </div>
+                    <button type="submit" class="send-btn">Transmit Query</button>
+                </form>
+            <% } else { %>
+                <div class="auth-lock-card">
+                    <div class="lock-icon">[ACCESS_DENIED]</div>
+                    <h3>Authentication Required</h3>
+                    <p>You must be authorized in the WNL network database to submit direct text inquiries to the project developers.</p>
+                    <a href="/auth/login" class="auth-redirect-btn">Authorize Node</a>
+                </div>
+            <% } %>
+        </div>
+    </section>
+
+    <%- include('partials/footer') %>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 }); 
+
+        document.querySelectorAll('.reveal-item').forEach(section => { 
+            observer.observe(section); 
+        }); 
+    </script> 
+    <script src="/js/animation.js"></script>
+</body>
 </html>

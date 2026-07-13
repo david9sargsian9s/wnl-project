@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head') %>
+    <body style="background-color: #040406;">
+        <%- include('partials/nav') %>
+
+        <main class="privacy-container">
+        <header class="privacy-header">
+            <h1>// PRIVACY_POLICY</h1>
+            <p class="subtitle">Last updated: July 13, 2026</p>
+        </header>
+
+        <section class="privacy-content">
+            <div class="legal-node">
+                <h3>1. Scope and Applicability</h3>
+                <p>This Privacy Policy applies globally to all digital services, websites, sub-brands, and applications operated under the <strong>WNL-project</strong> ecosystem. By interacting with any service within the WNL network node, you agree to the processing of data as described herein.</p>
+            </div>
+
+            <div class="legal-node">
+                <h3>2. Information We Collect</h3>
+                <p>We minimize data collection to the absolute necessary minimum required to maintain system integrity:</p>
+                <ul>
+                    <li><strong>Authentication Data:</strong> Profile details provided via OAuth providers (Google, GitHub), including public usernames and email addresses.</li>
+                    <li><strong>Support Inquiries:</strong> Any textual data, questions, or log outputs submitted directly through our system ticketing/support streams.</li>
+                    <li><strong>Network Logs:</strong> Temporary diagnostic information, including anonymized IP addresses and request timestamps.</li>
+                </ul>
+            </div>
+
+            <div class="legal-node">
+                <h3>3. Use of Data</h3>
+                <p>Collected attributes are utilized strictly for:</p>
+                <ul>
+                    <li>Authenticating user sessions across WNL infrastructure nodes.</li>
+                    <li>Processing and transmitting technical support inquiries to internal maintainers.</li>
+                    <li>Preventing malicious traffic vector execution (e.g., automated spam or DDoS activities).</li>
+                </ul>
+            </div>
+
+            <div class="legal-node">
+                <h3>4. Third-Party Integrations</h3>
+                <p>WNL services utilize trusted third-party authenticators (Google, GitHub OAuth) and core database clusters (MongoDB Atlas). We do not rent, sell, or distribute your private record profiles to external advertising networks or data brokers.</p>
+            </div>
+
+            <div class="legal-node">
+                <h3>5. Data Deletion and Control</h3>
+                <p>Users maintain full sovereignty over their records. You may request total erasure of your authenticated profile data and stored ticketing history at any time by contacting the system core through our official channels.</p>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+    </body>
+</html>

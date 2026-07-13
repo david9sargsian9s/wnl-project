@@ -1,7 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-    <%- include('partials/head') %>
-    <body>
-        products
-    </body>
+<html lang="en"> 
+<%- include('partials/head') %> 
+<body> 
+    <div class="matrix-grid"></div> 
+
+    <%- include('partials/nav') %> 
+
+    <section class="welcome-section"> 
+        <div class="quote-container"> 
+            <h1 class="typing-text">PRODUCTION_LINE // READY</h1>
+            <p class="sub-quote">"Deploying next-generation web core environments."</p> 
+        </div> 
+    </section> 
+
+    <section class="features-mini-section reveal-item">
+        <div class="mini-grid">
+            <div class="mini-card">
+                <div class="mini-icon">[64-BIT]</div>
+                <h4>High-Speed Processing</h4>
+                <p>Distributed node architectures processing cloud and local requests within isolated sandboxes.</p>
+            </div>
+            <div class="mini-card">
+                <div class="mini-icon">[SECURE]</div>
+                <h4>VFS Control</h4>
+                <p>Virtual File System protected by direct single-user authentication and secure TCP stream protocols.</p>
+            </div>
+            <div class="mini-card">
+                <div class="mini-icon">[UNIX]</div>
+                <h4>Unified Syntax</h4>
+                <p>Learn once, deploy anywhere using standard terminal commands and background daemons across both cores.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="webit-product" class="product-showcase reveal-item">
+        <div class="product-layout">
+            <div class="product-info">
+                <span class="product-tag">SYS_CORE // 01</span>
+                <h2>Webit Terminal OS</h2>
+                <p>A full-scale Web Operating System operating through background daemons and virtual file environments. Perfect for setting up direct TCP remote controls and local file syncing over secure netcat routing pipelines.</p>
+                <div class="product-specs">
+                    <div class="spec-item"><span>Target:</span> Full Web OS Client</div>
+                    <div class="spec-item"><span>Storage:</span> VFS / Cloud Sync</div>
+                    <div class="spec-item"><span>Protocol:</span> Netcat / TCP Stream</div>
+                </div>
+                <a href="/products/webit" class="product-link-btn">Initialize Webit Core</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="wlite-product" class="product-showcase reveal-item">
+        <div class="product-layout reverse">
+            <div class="product-info">
+                <span class="product-tag">SYS_CORE // 02</span>
+                <h2>Wlite Lightweight Core</h2>
+                <p>A reactive web operating environment built on ssr-forge-TS architecture. It mirrors the native client capabilities for complete system administration and core terminal operations, tailored for swift website and interface integration.</p>
+                <div class="product-specs">
+                    <div class="spec-item"><span>Target:</span> Web Operating Environment</div>
+                    <div class="spec-item"><span>Engine:</span> ssr-forge-TS</div>
+                    <div class="spec-item"><span>Integration:</span> Google Drive / Cloud</div>
+                </div>
+                <a href="/products/wlite" class="product-link-btn">Launch WLite Console</a>
+            </div>
+        </div>
+    </section>
+
+    <%- include('partials/footer') %>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.12 }); 
+
+        document.querySelectorAll('.reveal-item').forEach(section => { 
+            observer.observe(section); 
+        }); 
+    </script> 
+    <script src="/js/animation.js"></script>
+</body>
 </html>

@@ -1,0 +1,43 @@
+.privacy-container {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #e2e8f0;
+}
+
+.privacy-header h1 {
+    color: #00ff66;
+    font-size: 2rem;
+    border-bottom: 2px solid rgba(0, 255, 102, 0.2);
+    padding-bottom: 10px;
+}
+
+.privacy-header .subtitle {
+    color: #718096;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.privacy-content {
+    margin-top: 40px;
+}
+
+.legal-node {
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.legal-node h3 {
+    color: #00e5ff;
+    margin-bottom: 10px;
+}
+
+.legal-node ul {
+    padding-left: 20px;
+    list-style-type: square;
+}
+
+.legal-node li {
+    margin-bottom: 5px;
+}

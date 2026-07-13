@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 import 'dotenv/config';
+import session from 'express-session';
 
 import passport from 'passport';
 // Load the strategy settings file (the one we wrote in the previous step)
@@ -13,6 +14,7 @@ import './config/passport';
 import usersRouter from './routes/users';
 import authRouter from './routes/auth';
 import productRouter from './routes/events';
+import  apiRouter from './routes/api';
 
 import { UserModel } from './model/userModel';
 import { tokenModel } from './model/tokenModel';
@@ -64,18 +66,34 @@ app.locals.services = {
 const connect : any = process.env.ATLAS_URL;
 mongoose.connect(connect);
 
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'wnl_core_secret_key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { 
+    secure: false,
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}));
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.locals.user = req.user || null;
+  next();
+});
 
 app.use('/', usersRouter);
 app.use('/auth', authRouter);
 app.use('/', productRouter);
-
-
-app.use(passport.initialize());
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req : Request, res : Response, next : NextFunction) {

@@ -38,5 +38,10 @@ router.get('/roadmap', optionalAuth, render.getRoadmapPage);
 /* GET products page. */
 router.get('/products', optionalAuth, render.getProductsPage);
 
+/* GET license page. */
+router.get('/license', optionalAuth, render.getLicensePage);
+
+/* GET privacy page. */
+router.get('/privacy', optionalAuth, render.getPrivacyPage);
 
 export default router;

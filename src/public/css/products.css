@@ -1,0 +1,315 @@
+:root { 
+--bg-color: #060609; 
+--text-color: #e2e8f0; 
+--accent-green: #00ff66; 
+--accent-blue: #00e5ff; 
+--card-bg: rgba(10, 10, 15, 0.85); 
+--border-color: rgba(0, 255, 102, 0.15); 
+--font-mono: 'Courier New', Courier, monospace; 
+--transition-cubic: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { 
+margin: 0; 
+padding: 0; 
+box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body { 
+background-color: var(--bg-color); 
+color: var(--text-color); 
+font-family: 'Segoe UI', sans-serif; 
+overflow-x: hidden;
+}
+
+.matrix-grid { 
+position: fixed; 
+top: 0; left: 0; width: 100%; height: 100%; 
+background-image: 
+linear-gradient(var(--border-color) 1px, transparent 1px), 
+linear-gradient(90deg, var(--border-color) 1px, transparent 1px); 
+background-size: 40px 40px; 
+opacity: 0.12; 
+z-index: -1;
+}
+
+.welcome-section { 
+height: 60vh; 
+display: flex; 
+flex-direction: column; 
+justify-content: center; 
+align-items: center; 
+perspective: 1000px;
+padding: 0 20px;
+}
+
+.quote-container .typing-text {
+    font-family: var(--font-mono);
+    color: #fff;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 20px rgba(0, 255, 102, 0.3);
+}
+
+.quote-container .sub-quote {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    font-family: var(--font-mono);
+}
+
+.quote-container { 
+text-align: center; 
+max-width: 800px; 
+border-left: 3px solid var(--accent-green); 
+padding: 10px 30px; 
+background: rgba(0,0,0,0.4);
+backdrop-filter: blur(5px);
+border-radius: 0 8px 8px 0;
+}
+
+.features-mini-section {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    width: 100%;
+}
+
+.mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.mini-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 30px 25px;
+    transition: var(--transition-cubic);
+}
+
+.mini-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 10px 30px rgba(0, 229, 255, 0.1);
+}
+
+.mini-icon {
+    font-family: var(--font-mono);
+    color: var(--accent-green);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.mini-card h4 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.mini-card p {
+    color: #a0aec0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.product-showcase {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    width: 100%;
+}
+
+.product-layout {
+    display: flex;
+    align-items: center;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 50px;
+    gap: 50px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transition: var(--transition-cubic);
+}
+
+.product-layout:hover {
+    border-color: rgba(0, 255, 102, 0.3);
+}
+
+#wlite-product .product-layout:hover {
+    border-color: rgba(0, 229, 255, 0.3);
+}
+
+.product-info {
+    width: 100%;
+}
+
+.product-tag {
+    font-family: var(--font-mono);
+    color: var(--accent-green);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+#wlite-product .product-tag {
+    color: var(--accent-blue);
+}
+
+.product-info h2 {
+    font-size: 2.2rem;
+    color: #fff;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.product-info p {
+    color: #a0aec0;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 900px;
+}
+
+.product-specs {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 25px;
+}
+
+.spec-item {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: #fff;
+}
+
+.spec-item span {
+    color: rgba(255, 255, 255, 0.4);
+    margin-right: 5px;
+}
+
+.product-link-btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-cubic);
+    background: transparent;
+}
+
+#webit-product .product-link-btn {
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+    box-shadow: inset 0 0 0 0 var(--accent-green);
+}
+
+#webit-product .product-link-btn:hover {
+    background: var(--accent-green);
+    color: #000;
+    box-shadow: 0 0 25px rgba(0, 255, 102, 0.4);
+    transform: translateY(-2px);
+}
+
+#wlite-product .product-link-btn {
+    border: 1px solid var(--accent-blue);
+    color: var(--accent-blue);
+    box-shadow: inset 0 0 0 0 var(--accent-blue);
+}
+
+#wlite-product .product-link-btn:hover {
+    background: var(--accent-blue);
+    color: #000;
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.reveal-item { 
+opacity: 0; 
+transform: translateY(50px); 
+transition: var(--transition-cubic);
+}
+
+.reveal-item.show { 
+opacity: 1; 
+transform: translateY(0);
+}
+
+@media (max-width: 992px) {
+    .welcome-section {
+        height: 45vh;
+    }
+
+    .quote-container .typing-text {
+        font-size: 1.8rem;
+    }
+
+    .quote-container .sub-quote {
+        font-size: 0.95rem;
+    }
+
+    .mini-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .features-mini-section {
+        padding: 40px 20px;
+    }
+
+    .product-showcase {
+        padding: 40px 20px;
+    }
+
+    .product-layout {
+        padding: 30px 25px;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .product-info h2 {
+        font-size: 1.6rem;
+    }
+
+    .product-info p {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+    }
+
+    .product-specs {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 30px;
+    }
+    
+    .product-link-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width: 420px) {
+    .quote-container {
+        padding: 10px 15px;
+    }
+    
+    .mini-card {
+        padding: 20px;
+    }
+    
+    .product-layout {
+        padding: 20px;
+    }
+}
