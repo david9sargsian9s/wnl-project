@@ -4,7 +4,7 @@
 <body>
     <div class="glow-bg"></div>
 
-        <%- include('partials/nav') %> 
+    <%- include('partials/nav') %> 
 
     <div class="container">
         <header>
@@ -21,10 +21,10 @@
             
             <div class="code-block">
 <span class="code-comment"># Clone the repository locally</span>
-git clone https://github.com/david9sargsian9s/wnl-project.git
+git clone https://github.com/david9sargsian9s/Wlite.git
 
 <span class="code-comment"># Navigate to the project directory</span>
-cd wnl-project
+cd Wlite
 
 <span class="code-comment"># Install all node dependencies</span>
 npm install</div>
@@ -39,11 +39,24 @@ npm install</div>
             
             <div class="env-grid">
                 <div class="env-line"><span>ATLAS_URL</span>=mongodb+srv://... <span class="code-comment"># Connection string to your MongoDB cluster</span></div>
-                <div class="env-line"><span>SESSION_SECRET</span>=super_secret_key_here <span class="code-comment"># Private key used to sign sessions</span></div>
-                <div class="env-line"><span>GOOGLE_CLIENT_ID</span>=...apps.googleusercontent.com</div>
-                <div class="env-line"><span>GOOGLE_CLIENT_SECRET</span>=GOCSPX-...</div>
+                <div class="env-line"><span>PORT</span>=... <span class="code-comment"># Local port for the application</span></div>
+                <div class="env-line"><span>JWT_ACCESS_SECRET</span>=... <span class="code-comment"># Secret for access token generation</span></div>
+                <div class="env-line"><span>JWT_REFRESH_SECRET</span>=... <span class="code-comment"># Secret for refresh token generation</span></div>
+                
+                <div class="code-comment" style="margin: 5px 0;"># Google OAuth</div>
+                <div class="env-line"><span>GOOGLE_CLIENT_ID</span>=...</div>
+                <div class="env-line"><span>GOOGLE_CLIENT_SECRET</span>=...</div>
+                
+                <div class="code-comment" style="margin: 5px 0;"># Github OAuth</div>
                 <div class="env-line"><span>GITHUB_CLIENT_ID</span>=...</div>
                 <div class="env-line"><span>GITHUB_CLIENT_SECRET</span>=...</div>
+                
+                <div class="code-comment" style="margin: 5px 0;"># My technical google account</div>
+                <div class="env-line"><span>TECHNICAL_ACCOUNT</span>=...</div>
+                <div class="env-line"><span>TECHNICAL_ACCOUNT_PASS</span>=...</div>
+                
+                <div class="code-comment" style="margin: 5px 0;"># Session secret</div>
+                <div class="env-line"><span>SESSION_SECRET</span>=...</div>
             </div>
         </section>
 
