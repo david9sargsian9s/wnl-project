@@ -44,4 +44,7 @@ router.get('/license', optionalAuth, render.getLicensePage);
 /* GET privacy page. */
 router.get('/privacy', optionalAuth, render.getPrivacyPage);
 
+/* GET WLite page. */
+router.get('/wlite', optionalAuth, render.getWLite);
+
 export default router;

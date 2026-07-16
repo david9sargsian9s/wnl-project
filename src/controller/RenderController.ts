@@ -100,6 +100,24 @@ class RenderController {
         }
     }
 
+    async getWLite(req: Request, res: Response) {
+        try {
+            const user = req.jwtUser || req.user || null;
+
+            res.render('wlite', {
+                title : 'WLite',
+                pageStyles: [
+                    '/css/wlite.css'
+                ],
+                user : user
+            })
+        } catch (error : unknown) {
+            if (error instanceof Error) {
+                return res.status(400).json({ error : error.message })
+            }
+        }
+    }
+
     async getLicensePage(req : Request, res : Response) {
         try {
             const user = req.jwtUser || req.user || null;
