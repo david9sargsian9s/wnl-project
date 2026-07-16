@@ -20,9 +20,9 @@
     <div style="display: flex; align-items: center; gap: 20px;">
         <div class="user-menu-wrapper" id="userMenu">
             <button class="user-icon-btn" onclick="toggleUserMenu()">
-                <% if (locals.user && user.photos && user.photos[0]) { %>
+                <% if (typeof user !== 'undefined' && user && user.photos && user.photos[0]) { %>
                     <img src="<%= user.photos[0].value %>" alt="Avatar">
-                <% } else if (locals.user && user.avatarUrl) { %>
+                <% } else if (typeof user !== 'undefined' && user && user.avatarUrl) { %>
                     <img src="<%= user.avatarUrl %>" alt="Avatar">
                 <% } else { %>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -32,16 +32,16 @@
             <div class="user-popup">
                 <div class="Avatar">
                     <div class="user-icon-btn">
-                        <% if (locals.user && user.photos && user.photos[0]) { %>
+                        <% if (typeof user !== 'undefined' && user && user.photos && user.photos[0]) { %>
                             <img src="<%= user.photos[0].value %>" alt="Avatar">
-                        <% } else if (locals.user && user.avatarUrl) { %>
+                        <% } else if (typeof user !== 'undefined' && user && user.avatarUrl) { %>
                             <img src="<%= user.avatarUrl %>" alt="Avatar">
                         <% } else { %>
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                         <% } %>
                     </div>
                 </div>
-                <% if (locals.user) { %>
+                <% if (typeof user !== 'undefined' && user) { %>
                     <div class="popup-username"><%= user.name || 'WNL_User' %></div>
                     <div class="popup-email"><%= user.email || 'OAuth Protected Account' %></div>
                     <div class="popup-divider"></div>
@@ -62,24 +62,26 @@
     </div>
 </nav>
 
-
-<% if (locals.user) { %>
+<% if (typeof user !== 'undefined' && user) { %>
 <script>
-    document.getElementById('navDeleteBtn').addEventListener('click', async (e) => {
-        if (!confirm('Are you sure you want to completely delete your WNL account?')) return;
-        const userId = e.target.getAttribute('data-id');
-        try {
-            const res = await fetch(`/api/users/${userId}`, { method: 'DELETE' });
-            if (res.ok) {
-                window.location.href = '/auth/clear';
-            } else {
-                const data = await res.json();
-                alert(data.error || 'Error');
+    const deleteBtn = document.getElementById('navDeleteBtn');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', async (e) => {
+            if (!confirm('Are you sure you want to completely delete your WNL account?')) return;
+            const userId = e.target.getAttribute('data-id');
+            try {
+                const res = await fetch(`/api/users/${userId}`, { method: 'DELETE' });
+                if (res.ok) {
+                    window.location.href = '/auth/clear';
+                } else {
+                    const data = await res.json();
+                    alert(data.error || 'Error');
+                }
+            } catch (err) {
+                console.error(err);
             }
-        } catch (err) {
-            console.error(err);
-        }
-    });
+        });
+    }
 </script>
 <% } %>
 
