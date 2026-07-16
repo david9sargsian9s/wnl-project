@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head') %> 
+<body>
+    <div class="glow-bg"></div>
+
+    <%- include('partials/nav') %> 
+
+    <div class="container">
+        <header>
+            <div class="logo-title">WLite Engine</div>
+            <div class="subtitle">Quick setup guide, environment configuration, and local initialization steps for the core ecosystem.</div>
+        </header>
+
+        <!-- Step 1: Clone & Deps -->
+        <section class="card">
+            <h2>
+                <span>⚡</span> Step 1: Cloning & Dependencies
+            </h2>
+            <p>First, clone the repository to your local machine and install all required packages:</p>
+            
+            <div class="code-block">
+<span class="code-comment"># Clone the repository locally</span>
+git clone https://github.com/david9sargsian9s/Wlite.git
+
+<span class="code-comment"># Navigate to the project directory</span>
+cd Wlite
+
+<span class="code-comment"># Install all node dependencies</span>
+npm install</div>
+        </section>
+
+        <!-- Step 2: Env Configuration -->
+        <section class="card">
+            <h2>
+                <span>⚙️</span> Step 2: Environment Configuration (.env)
+            </h2>
+            <p>Create a file named <strong>.env</strong> in the root directory of your project and populate it with your specific API keys, database credentials, and OAuth tokens:</p>
+            
+            <div class="env-grid">
+                <div class="env-line"><span>ATLAS_URL</span>=mongodb+srv://... <span class="code-comment"># Connection string to your MongoDB cluster</span></div>
+                <div class="env-line"><span>PORT</span>=... <span class="code-comment"># Local port for the application</span></div>
+                <div class="env-line"><span>JWT_ACCESS_SECRET</span>=... <span class="code-comment"># Secret for access token generation</span></div>
+                <div class="env-line"><span>JWT_REFRESH_SECRET</span>=... <span class="code-comment"># Secret for refresh token generation</span></div>
+                
+                <div class="code-comment" style="margin: 5px 0;"># Google OAuth</div>
+                <div class="env-line"><span>GOOGLE_CLIENT_ID</span>=...</div>
+                <div class="env-line"><span>GOOGLE_CLIENT_SECRET</span>=...</div>
+                
+                <div class="code-comment" style="margin: 5px 0;"># Github OAuth</div>
+                <div class="env-line"><span>GITHUB_CLIENT_ID</span>=...</div>
+                <div class="env-line"><span>GITHUB_CLIENT_SECRET</span>=...</div>
+                
+                <div class="code-comment" style="margin: 5px 0;"># My technical google account</div>
+                <div class="env-line"><span>TECHNICAL_ACCOUNT</span>=...</div>
+                <div class="env-line"><span>TECHNICAL_ACCOUNT_PASS</span>=...</div>
+                
+                <div class="code-comment" style="margin: 5px 0;"># Session secret</div>
+                <div class="env-line"><span>SESSION_SECRET</span>=...</div>
+            </div>
+        </section>
+
+        <!-- Step 3: Initialization -->
+        <section class="card">
+            <h2>
+                <span>🚀</span> Step 3: Initialization Methods
+            </h2>
+            <p>Pick the run method that matches your environment goals:</p>
+
+            <div class="grid-methods">
+                <!-- Standard Build -->
+                <div class="method-box production">
+                    <span class="badge badge-cyan">Recommended</span>
+                    <h3>Standard Build</h3>
+                    <p>Best for stable execution of the local engine. Compiles TypeScript directly to production-ready JS.</p>
+                    <div class="code-block" style="font-size: 0.85rem;">
+npm run build
+npm start</div>
+                </div>
+
+                <!-- Dev Mode -->
+                <div class="method-box dev">
+                    <span class="badge badge-red">Developers Only</span>
+                    <h3>Development Mode</h3>
+                    <p>Launches the project with nodemon enabled for hot-reloading when source files are modified.</p>
+                    <div class="code-block" style="font-size: 0.85rem;">
+npm run dev</div>
+                </div>
+            </div>
+
+            <!-- Warning Notice -->
+            <div class="warning-note">
+                <strong>Notice for Developers:</strong> The project is actively developing; therefore, you might encounter unexpected issues in development mode. To avoid errors, using the standard production build is highly recommended.
+            </div>
+        </section>
+    </div>
+
+    <%- include('partials/footer') %>
+</body>
+</html>
