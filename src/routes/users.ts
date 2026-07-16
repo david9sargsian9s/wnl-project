@@ -45,6 +45,6 @@ router.get('/license', optionalAuth, render.getLicensePage);
 router.get('/privacy', optionalAuth, render.getPrivacyPage);
 
 /* GET WLite page. */
-router.get('/wlite', optionalAuth, render.getWLite);
+router.get('/products/wlite', optionalAuth, render.getWLite);
 
 export default router;
