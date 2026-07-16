@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc && cp -r src/public dist/ && cp -r src/views dist/",
+    "build": "tsc",
     "dev": "nodemon",
     "start": "node dist/server.js"
   },
