@@ -1,4 +1,11 @@
 async function checkNavbarAuth() {
+
+    const authZone = document.getElementById('nav-auth-zone');
+    
+    if (!authZone) {
+        return; 
+    }
+
     try {
         const res = await fetch('/auth/get');
         const authZone = document.getElementById('nav-auth-zone');
