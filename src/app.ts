@@ -34,9 +34,9 @@ const app = express();
 app.set('trust proxy', true);
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(process.cwd(), 'views'));
+app.set('views', path.join(__dirname, typeof process.env.NODE_ENV === 'undefined' ? 'views' : '../src/views'));
 
-app.use(express.static(path.join(process.cwd(), 'public')));
+app.use(express.static(path.join(__dirname, typeof process.env.NODE_ENV === 'undefined' ? 'public' : '../src/public')));
 
 
 interface IAppLocals {
