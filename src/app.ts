@@ -101,14 +101,20 @@ app.use(function(req : Request, res : Response, next : NextFunction) {
 });
 
 // error handler
-app.use(function(err : any, req : Request, res : Response, next : NextFunction): void {
+app.use(function(err: any, req: Request, res: Response, next: NextFunction): void {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.json({ error : err.message })
+  const status = err.status || 500;
+  res.status(status);
+
+  if (status === 404) {
+    return res.render('404');
+  }
+
+  res.render('error');
 });
 
 export default app;
