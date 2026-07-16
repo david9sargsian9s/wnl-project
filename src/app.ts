@@ -102,7 +102,7 @@ app.use(function(req : Request, res : Response, next : NextFunction) {
   next(createError(404));
 });
 
-// error handler
+// error handler 
 app.use(function(err: any, req: Request, res: Response, next: NextFunction): void {
   // set locals, only providing error in development
   res.locals.message = err.message;
@@ -111,10 +111,6 @@ app.use(function(err: any, req: Request, res: Response, next: NextFunction): voi
   // render the error page
   const status = err.status || 500;
   res.status(status);
-
-  if (status === 404) {
-    return res.render('404');
-  }
 
   res.render('error');
 });
