@@ -86,6 +86,8 @@ Any derivative distribution shall:
 
 (d) not represent itself as an official WNL project.
 
+(e) remove all official WNL logos, icons, and branding assets from the distribution, replacing them with the derivative project's own visual identity.
+
 Documentation accompanying a derivative distribution should include a notice substantially similar to the following:
 
 "This project is an independent distribution based on WLite, a core component of the WNL Ecosystem. It is not developed, maintained, certified, endorsed, sponsored, or officially affiliated with WNL Systems."
